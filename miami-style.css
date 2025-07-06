@@ -1,0 +1,242 @@
+:root {
+  --mv-deep-blue: #0D0221;
+  --mv-purple: #2D0F41;
+  --mv-magenta: #BC005A;
+  --mv-pink: #F038FF;
+  --mv-cyan: #00F0FF;
+  --mv-orange: #FF7A00;
+  --mv-yellow: #FFFF54;
+  --mv-text: #F5F5F5;
+  --mv-text-darker: #A0A0A0;
+  --card-bg: rgba(10, 0, 20, 0.6); /* Slightly more opaque */
+  --card-border: var(--mv-cyan);
+  --body-bg-gradient: linear-gradient(to bottom, var(--mv-purple), var(--mv-deep-blue));
+
+  /* Dark Mode Variables (will be applied via a body class) */
+  --dm-deep-blue: #03000B;
+  --dm-purple: #1A0529;
+  --dm-magenta: #A0004A;
+  --dm-pink: #D025D8;
+  --dm-cyan: #00C0D0;
+  --dm-card-bg: rgba(0, 0, 5, 0.75); /* Slightly more opaque */
+  --dm-card-border: var(--dm-cyan);
+  --dm-body-bg-gradient: linear-gradient(to bottom, var(--dm-purple), var(--dm-deep-blue));
+  --dm-text: #E0E0E0;
+}
+
+body {
+  background: var(--body-bg-gradient);
+  color: var(--mv-text);
+  font-family: sans-serif; /* Basic sans-serif, will refine if possible */
+}
+
+.container.py-5 {
+  padding-top: 3rem !important; /* Original py-5 was a bit much with the new theme */
+  padding-bottom: 3rem !important;
+}
+
+/* Title and Lead */
+.display-4 {
+  color: var(--mv-pink);
+  text-shadow: 0 0 7px var(--mv-pink), 0 0 10px var(--mv-pink), 0 0 21px var(--mv-pink), 0 0 42px var(--mv-magenta), 0 0 82px var(--mv-magenta);
+  font-weight: bold;
+}
+
+.lead.text-muted { /* Override Bootstrap's text-muted for our theme */
+  color: var(--mv-text-darker) !important;
+  font-weight: normal;
+}
+
+/* Card Styling */
+.card {
+  background-color: var(--card-bg);
+  border: 2px solid var(--card-border);
+  box-shadow: 0 0 8px var(--card-border), 0 0 12px var(--card-border), inset 0 0 5px rgba(0, 240, 255, 0.3); /* Added inset for subtle inner glow */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  color: var(--mv-text); /* Ensure card text is light */
+}
+
+.card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 0 15px var(--card-border), 0 0 25px var(--card-border), 0 0 35px var(--mv-pink), inset 0 0 8px rgba(0, 240, 255, 0.5);
+}
+
+.card-title {
+  margin-top: 0.75rem; /* Adjusted from mt-2 */
+  font-weight: bold;
+}
+
+/* Icon-specific colors and glows */
+.card .bi-person { /* Usuarios */
+  color: var(--mv-cyan);
+  text-shadow: 0 0 5px var(--mv-cyan), 0 0 10px var(--mv-cyan);
+}
+.card .card-title.text-primary { /* Usuarios title */
+  color: var(--mv-cyan) !important; /* Override Bootstrap text-primary */
+  text-shadow: 0 0 5px var(--mv-cyan);
+}
+
+.card .bi-person-check-fill { /* Clientes */
+  color: var(--mv-pink);
+  text-shadow: 0 0 5px var(--mv-pink), 0 0 10px var(--mv-pink);
+}
+.card .card-title.text-success { /* Clientes title */
+  color: var(--mv-pink) !important; /* Override Bootstrap text-success */
+  text-shadow: 0 0 5px var(--mv-pink);
+}
+
+.card .bi-person-fill-gear { /* Encargados */
+  color: var(--mv-orange);
+  text-shadow: 0 0 5px var(--mv-orange), 0 0 10px var(--mv-orange);
+}
+.card .card-title.text-info { /* Encargados title */
+  color: var(--mv-orange) !important; /* Override Bootstrap text-info */
+  text-shadow: 0 0 5px var(--mv-orange);
+}
+
+.card .bi-box-seam { /* Productos */
+  color: var(--mv-yellow);
+  text-shadow: 0 0 5px var(--mv-yellow), 0 0 10px var(--mv-yellow);
+}
+.card .card-title.text-warning { /* Productos title */
+  color: var(--mv-yellow) !important; /* Override Bootstrap text-warning */
+  text-shadow: 0 0 5px var(--mv-yellow);
+}
+
+.card .bi-wrench-adjustable { /* Reparaciones */
+  color: var(--mv-magenta);
+  text-shadow: 0 0 5px var(--mv-magenta), 0 0 10px var(--mv-magenta);
+}
+.card .card-title.text-danger { /* Reparaciones title */
+  color: var(--mv-magenta) !important; /* Override Bootstrap text-danger */
+  text-shadow: 0 0 5px var(--mv-magenta);
+}
+
+.card .bi-boxes { /* Materiales */
+  color: var(--mv-cyan); /* Re-using cyan for variety */
+  text-shadow: 0 0 5px var(--mv-cyan), 0 0 10px var(--mv-cyan);
+}
+.card .card-title.text-secondary { /* Materiales title */
+  color: var(--mv-cyan) !important; /* Override Bootstrap text-secondary */
+  text-shadow: 0 0 5px var(--mv-cyan);
+}
+
+.card .bi-credit-card-2-front { /* Pagos */
+  color: var(--mv-pink); /* Re-using pink */
+  text-shadow: 0 0 5px var(--mv-pink), 0 0 10px var(--mv-pink);
+}
+.card .card-title.text-dark { /* Pagos title */
+  color: var(--mv-pink) !important; /* Override Bootstrap text-dark */
+  text-shadow: 0 0 5px var(--mv-pink);
+}
+
+/* Ensure links within cards don't get default browser styling if not already handled */
+.card a.text-decoration-none {
+  color: inherit; /* Make link inherit card's text color */
+}
+
+/* Dark Mode Styles (to be activated by a body class e.g. .dark-mode-active) */
+body.dark-mode-active {
+  background: var(--dm-body-bg-gradient);
+  color: var(--dm-text);
+}
+
+body.dark-mode-active .display-4 {
+  color: var(--dm-pink);
+  text-shadow: 0 0 7px var(--dm-pink), 0 0 10px var(--dm-pink), 0 0 21px var(--dm-pink), 0 0 42px var(--dm-magenta), 0 0 82px var(--dm-magenta);
+}
+
+body.dark-mode-active .lead.text-muted {
+  color: var(--mv-text-darker) !important; /* Keep this subtle */
+}
+
+body.dark-mode-active .card {
+  background-color: var(--dm-card-bg);
+  border: 2px solid var(--dm-card-border);
+  box-shadow: 0 0 8px var(--dm-card-border), 0 0 12px var(--dm-card-border), inset 0 0 5px rgba(0, 192, 208, 0.3);
+  color: var(--dm-text);
+}
+
+body.dark-mode-active .card:hover {
+  box-shadow: 0 0 15px var(--dm-card-border), 0 0 25px var(--dm-card-border), 0 0 35px var(--dm-pink), inset 0 0 8px rgba(0, 192, 208, 0.5);
+}
+
+/* Dark mode icon/title colors - can be the same or slightly adjusted if needed */
+/* For now, they will inherit the light mode neon colors but on a darker theme */
+/* If specific adjustments are needed for dark mode icons, they'd go here */
+
+body.dark-mode-active .card .bi-person,
+body.dark-mode-active .card .card-title.text-primary {
+  color: var(--dm-cyan) !important;
+  text-shadow: 0 0 5px var(--dm-cyan);
+}
+
+body.dark-mode-active .card .bi-person-check-fill,
+body.dark-mode-active .card .card-title.text-success {
+  color: var(--dm-pink) !important;
+  text-shadow: 0 0 5px var(--dm-pink);
+}
+
+body.dark-mode-active .card .bi-person-fill-gear,
+body.dark-mode-active .card .card-title.text-info {
+  color: var(--mv-orange) !important; /* Orange might need adjustment in dark mode if too harsh */
+  text-shadow: 0 0 5px var(--mv-orange);
+}
+
+body.dark-mode-active .card .bi-box-seam,
+body.dark-mode-active .card .card-title.text-warning {
+  color: var(--mv-yellow) !important; /* Yellow might need adjustment */
+  text-shadow: 0 0 5px var(--mv-yellow);
+}
+
+body.dark-mode-active .card .bi-wrench-adjustable,
+body.dark-mode-active .card .card-title.text-danger {
+  color: var(--dm-magenta) !important;
+  text-shadow: 0 0 5px var(--dm-magenta);
+}
+
+body.dark-mode-active .card .bi-boxes,
+body.dark-mode-active .card .card-title.text-secondary {
+  color: var(--dm-cyan) !important; /* Re-using cyan */
+  text-shadow: 0 0 5px var(--dm-cyan);
+}
+
+body.dark-mode-active .card .bi-credit-card-2-front,
+body.dark-mode-active .card .card-title.text-dark {
+  color: var(--dm-pink) !important; /* Re-using pink */
+  text-shadow: 0 0 5px var(--dm-pink);
+}
+
+/* Basic styles for a toggle button if not using Bootstrap components heavily */
+#theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px;
+  background-color: var(--card-bg);
+  color: var(--mv-pink);
+  border: 1px solid var(--mv-pink);
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1000;
+  font-size: 1.5rem; /* For Bootstrap Icons */
+}
+
+#theme-toggle:hover {
+  background-color: var(--mv-pink);
+  color: var(--mv-deep-blue);
+  box-shadow: 0 0 10px var(--mv-pink);
+}
+
+/* Hide one icon by default */
+#theme-toggle .bi-sun-fill {
+  display: none;
+}
+
+body.dark-mode-active #theme-toggle .bi-moon-fill {
+  display: none;
+}
+
+body.dark-mode-active #theme-toggle .bi-sun-fill {
+  display: inline-block;
+}

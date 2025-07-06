@@ -1,211 +1,104 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
-  <title>Usuarios</title>
+  <title>Inicio | ReparaFácil</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="/public/css/inicio.css">
 </head>
-
-<body class="bg-light">
-
+<body class="d-flex flex-column min-vh-100">
   <?php include(RUTA_APP . '/vistas/inc/header.php'); ?>
 
-  <div class="container py-2">
-    <div class="row mb-4">
-      <div class="col-12 d-flex justify-content-between align-items-center">
-        <h2 class="mb-0">Pagos</h2>
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#nuevoUsuarioModal">
-          <i class="bi bi-plus-circle me-1"></i> Nuevo Usuario
-        </button>
-      </div>
-    </div>
+  <div class="container p-5 flex-grow-1">
+    <div class="row g-4 justify-content-center">
 
-    <div class="row">
-      <!-- Tarjeta de usuario (puedes duplicar dinámicamente con PHP) -->
-      <div class="col-12 col-md-6 col-lg-4 mb-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">admin@correo.com</h5>
-            <p class="mb-1"><strong>Nombre:</strong> Administrador</p>
-            <p class="mb-3"><strong>Rol:</strong> Administrador</p>
-            <div class="d-flex justify-content-end gap-1">
-              <a href="#" class="btn btn-outline-success"><i class="bi bi-pencil-square"></i></a>
-              <a href="#" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a>
+      <?php if (tienePrivilegios($datos['usuario']->rol_id, [ROL_ADMINISTRADOR, ROL_ENCARGADO])): ?>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <a href="usuarios" class="text-decoration-none">
+            <div class="card text-center h-100 bg-primary shadow-lg">
+              <div class="card-body">
+                <i class="bi bi-person fs-1 text-white"></i>
+                <h5 class="card-title text-white">Usuarios</h5>
+              </div>
+            </div>
+          </a>
+        </div>
+      <?php endif; ?>
+
+      <?php if (tienePrivilegios($datos['usuarioSesion']->rol_id, [ROL_ADMINISTRADOR, ROL_ENCARGADO])): ?>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <a href="clientes" class="text-decoration-none">
+            <div class="card text-center h-100 bg-success shadow-lg" id="clientes">
+              <div class="card-body">
+                <i class="bi bi-person-check-fill fs-1 text-white"></i>
+                <h5 class="card-title text-white">Clientes</h5>
+              </div>
+            </div>
+          </a>
+        </div>
+        
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <a href="encargados" class="text-decoration-none">
+            <div class="card text-center h-100 shadow-lg" id="encargados">
+              <div class="card-body">
+                <i class="bi bi-person-fill-gear fs-1 text-white"></i>
+                <h5 class="card-title text-white">Encargados</h5>
+              </div>
+            </div>
+          </a>
+        </div>
+      <?php endif; ?>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <a href="productos" class="text-decoration-none">
+          <div class="card text-center h-100 shadow-lg" id="productos">
+            <div class="card-body">
+              <i class="bi bi-box-seam fs-1 text-white"></i>
+              <h5 class="card-title text-white">Productos</h5>
             </div>
           </div>
-        </div>
-		
-		<div class="card">
-          <div class="card-body">
-            <h5 class="card-title">admin@correo.com</h5>
-            <p class="mb-1"><strong>Nombre:</strong> Administrador</p>
-            <p class="mb-3"><strong>Rol:</strong> Administrador</p>
-            <div class="d-flex justify-content-end gap-1">
-              <a href="#" class="btn btn-outline-success"><i class="bi bi-pencil-square"></i></a>
-              <a href="#" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a>
-            </div>
-          </div>
-        </div>
-		
-		<div class="card">
-          <div class="card-body">
-            <h5 class="card-title">admin@correo.com</h5>
-            <p class="mb-1"><strong>Nombre:</strong> Administrador</p>
-            <p class="mb-3"><strong>Rol:</strong> Administrador</p>
-            <div class="d-flex justify-content-end gap-1">
-              <a href="#" class="btn btn-outline-success"><i class="bi bi-pencil-square"></i></a>
-              <a href="#" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a>
-            </div>
-          </div>
-        </div>
-		
-		<div class="card">
-          <div class="card-body">
-            <h5 class="card-title">admin@correo.com</h5>
-            <p class="mb-1"><strong>Nombre:</strong> Administrador</p>
-            <p class="mb-3"><strong>Rol:</strong> Administrador</p>
-            <div class="d-flex justify-content-end gap-1">
-              <a href="#" class="btn btn-outline-success"><i class="bi bi-pencil-square"></i></a>
-              <a href="#" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a>
-            </div>
-          </div>
-        </div>
-		
-		<div class="card">
-          <div class="card-body">
-            <h5 class="card-title">admin@correo.com</h5>
-            <p class="mb-1"><strong>Nombre:</strong> Administrador</p>
-            <p class="mb-3"><strong>Rol:</strong> Administrador</p>
-            <div class="d-flex justify-content-end gap-1">
-              <a href="#" class="btn btn-outline-success"><i class="bi bi-pencil-square"></i></a>
-              <a href="#" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a>
-            </div>
-          </div>
-        </div>
-		
-		<div class="card">
-          <div class="card-body">
-            <h5 class="card-title">admin@correo.com</h5>
-            <p class="mb-1"><strong>Nombre:</strong> Administrador</p>
-            <p class="mb-3"><strong>Rol:</strong> Administrador</p>
-            <div class="d-flex justify-content-end gap-1">
-              <a href="#" class="btn btn-outline-success"><i class="bi bi-pencil-square"></i></a>
-              <a href="#" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a>
-            </div>
-          </div>
-        </div>
-		
-		<div class="card">
-          <div class="card-body">
-            <h5 class="card-title">admin@correo.com</h5>
-            <p class="mb-1"><strong>Nombre:</strong> Administrador</p>
-            <p class="mb-3"><strong>Rol:</strong> Administrador</p>
-            <div class="d-flex justify-content-end gap-1">
-              <a href="#" class="btn btn-outline-success"><i class="bi bi-pencil-square"></i></a>
-              <a href="#" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a>
-            </div>
-          </div>
-        </div>
-		
-		<div class="card">
-          <div class="card-body">
-            <h5 class="card-title">admin@correo.com</h5>
-            <p class="mb-1"><strong>Nombre:</strong> Administrador</p>
-            <p class="mb-3"><strong>Rol:</strong> Administrador</p>
-            <div class="d-flex justify-content-end gap-1">
-              <a href="#" class="btn btn-outline-success"><i class="bi bi-pencil-square"></i></a>
-              <a href="#" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a>
-            </div>
-          </div>
-        </div>
-		
-		<div class="card">
-          <div class="card-body">
-            <h5 class="card-title">admin@correo.com</h5>
-            <p class="mb-1"><strong>Nombre:</strong> Administrador</p>
-            <p class="mb-3"><strong>Rol:</strong> Administrador</p>
-            <div class="d-flex justify-content-end gap-1">
-              <a href="#" class="btn btn-outline-success"><i class="bi bi-pencil-square"></i></a>
-              <a href="#" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a>
-            </div>
-          </div>
-        </div>
-		
-		<div class="card">
-          <div class="card-body">
-            <h5 class="card-title">admin@correo.com</h5>
-            <p class="mb-1"><strong>Nombre:</strong> Administrador</p>
-            <p class="mb-3"><strong>Rol:</strong> Administrador</p>
-            <div class="d-flex justify-content-end gap-1">
-              <a href="#" class="btn btn-outline-success"><i class="bi bi-pencil-square"></i></a>
-              <a href="#" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a>
-            </div>
-          </div>
-        </div>
-		
-		<div class="card">
-          <div class="card-body">
-            <h5 class="card-title">admin@correo.com</h5>
-            <p class="mb-1"><strong>Nombre:</strong> Administrador</p>
-            <p class="mb-3"><strong>Rol:</strong> Administrador</p>
-            <div class="d-flex justify-content-end gap-1">
-              <a href="#" class="btn btn-outline-success"><i class="bi bi-pencil-square"></i></a>
-              <a href="#" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a>
-            </div>
-          </div>
-        </div>
-		
+        </a>
       </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <a href="reparaciones" class="text-decoration-none">
+          <div class="card text-center h-100 shadow-lg" id="reparaciones">
+            <div class="card-body">
+              <i class="bi bi-wrench-adjustable fs-1 text-white"></i>
+              <h5 class="card-title text-white">Reparaciones</h5>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <a href="materiales" class="text-decoration-none">
+          <div class="card text-center h-100 shadow-lg" id="materiales">
+            <div class="card-body">
+              <i class="bi bi-boxes fs-1 text-white"></i>
+              <h5 class="card-title text-white">Materiales</h5>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <a href="pagos" class="text-decoration-none">
+          <div class="card text-center h-100 shadow-lg" id="pagos">
+            <div class="card-body">
+              <i class="bi bi-credit-card-2-front fs-1 text-white"></i>
+              <h5 class="card-title text-white">Pagos</h5>
+            </div>
+          </div>
+        </a>
+      </div>
+
     </div>
   </div>
-
-  <!-- Modal para nuevo usuario -->
-  <div class="modal fade" id="nuevoUsuarioModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <form>
-          <div class="modal-header">
-            <h5 class="modal-title">Nuevo usuario</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-          </div>
-          <div class="modal-body">
-            <div class="mb-3">
-              <label for="emailUsuario" class="form-label">Correo electrónico</label>
-              <input type="email" class="form-control" id="emailUsuario" placeholder="usuario@correo.com" required>
-            </div>
-            <div class="mb-3">
-              <label for="nombreUsuario" class="form-label">Nombre</label>
-              <input type="text" class="form-control" id="nombreUsuario" placeholder="Nombre completo" required>
-            </div>
-            <div class="mb-3">
-              <label for="contrasenaUsuario" class="form-label">Contraseña</label>
-              <input type="password" class="form-control" id="contrasenaUsuario" placeholder="Contraseña" required>
-            </div>
-            <div class="mb-3">
-              <label for="rolUsuario" class="form-label">Rol</label>
-              <select class="form-select" id="rolUsuario" required>
-                <option value="">Seleccione un rol</option>
-                <option value="Administrador">Administrador</option>
-                <option value="Usuario">Usuario</option>
-                <option value="Cliente">Cliente</option>
-                <option value="Encargado">Encargado</option>
-              </select>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger d-flex justify-content-start" data-bs-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Guardar Usuario</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <?php include(RUTA_APP . '/vistas/inc/footer.php'); ?>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <?php include(RUTA_APP . '/vistas/inc/footer.php'); ?>
 </body>
-
 </html>
